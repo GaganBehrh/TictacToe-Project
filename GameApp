@@ -1,0 +1,183 @@
+package tictactoe;
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        char[][] tictac = new char[3][3];
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter cells: ");
+        String cells = scan.next();
+        String lineOne = "| " + cells.charAt(0) + " " + cells.charAt(1) + " " + cells.charAt(2) + " |";
+        String lineTwo = "| " + cells.charAt(3) + " " + cells.charAt(4) + " " + cells.charAt(5) + " |";
+        String lineThree = "| " + cells.charAt(6) + " " + cells.charAt(7) + " " + cells.charAt(8) + " |";
+
+        System.out.println("---------");
+        System.out.println(lineOne);
+        System.out.println(lineTwo);
+        System.out.println(lineThree);
+        System.out.println("---------");
+        result(cells);
+        System.out.println("Enter the coordinates");
+        int a1=0,b1=0;
+        int x=0,y=0;
+        do  {
+            scan = new Scanner(System.in);
+            try {
+               x = scan.nextInt()-1;
+               y = scan.nextInt()-1;
+                if (x<0 || x>2 || y<0 || y>2) throw new Exception();
+                insertMatrix (x, y, cells);
+
+            }
+            catch(Exception ex){
+
+                System.out.println("You should enter numbers from 0 to 2!");
+                System.out.println("Enter the coordinates:");
+               tictac[x][y]='X';
+                a1=-10; b1=-10;
+            }
+        }while(a1+b1<0) ;
+
+    }
+
+    private static char[][] makeMatrix(String cells) {
+
+        char[][] tic = new char[3][3]; // from 0 to 2
+        for (int i = 0; i <3; i++) {
+            tic[0][i] = cells.charAt(i);
+        }
+        for (int i =0; i <3; i++) {
+            tic[1][i] = cells.charAt(i + 3);
+        }
+        for (int i = 0; i <3; i++) {
+            tic[2][i] = cells.charAt(i + 6);
+        }
+        return tic;
+    }
+
+    public static void insertMatrix(int a, int b,String cell) {
+        char[][] tic = new char[3][3];
+        char[][] tictac = makeMatrix(cell);
+        //Scanner scan = new Scanner(System.in);
+
+        String row3 = "" + tictac[2][0] + tictac[2][1] + tictac[2][2];
+        String row2 = "" + tictac[1][0] + tictac[1][1] + tictac[1][2];
+        String row1 = "" + tictac[0][0] + tictac[0][1] + tictac[0][2];
+        String col1 = "" + tictac[0][0] + tictac[1][0] + tictac[2][0];
+        String col2 = "" + tictac[0][1] + tictac[1][1] + tictac[2][1];
+        String col3 = "" + tictac[0][2] + tictac[1][2] + tictac[2][2];
+        String diag1 = "" + tictac[0][0] + tictac[1][1] + tictac[2][2];
+        String diag2 = "" + tictac[2][0] + tictac[1][1] + tictac[0][2];
+        tictac[a][b]='X';
+
+        System.out.println("---------");
+        //System.out.println(tic[a][b]);
+        System.out.println("| " + tictac[0][0] +" " +tictac[0][1] +" "+ tictac[0][2]+"| ");
+        System.out.println("| " + tictac[1][0] +" " +tictac[1][1] +" "+ tictac[1][2]+"| ");
+        System.out.println("| "+ tictac[2][0] +" " +tictac[2][1] +" "+ tictac[2][2]+"| ");
+        System.out.println("---------");
+   /*      if((a==4 && b==1) || (a==1 && b==4))
+        {
+
+           System.out.println("Coordinates should be from 1 to 3!");
+            System.out.println("Enter the coordinates");
+            String cells = scan.next();
+            System.out.println("Coordinates should be from 1 to 3!");
+            System.out.println("Enter the coordinates");
+            String cells1 = scan.next();
+
+
+            tictac[0][0]='X';
+
+        }            */
+
+        /*eString a1= a+"";
+        String b1= b+"";
+        if (a1.compareTo("one")!=0)
+        {
+            System.out.println("You should enter numbers!");
+        }
+        lse if (a1!="one") && b1!="three"))
+        {
+            System.out.println("You should enter numbers!");
+            System.out.println("Enter the coordinates");
+            String cells = scan.next();
+            tictac[0][0]='X';
+
+        }
+        System.out.println("---------");
+        System.out.println(tic[a][b]);
+       System.out.println("| " + tictac[0][0] +" " +tictac[0][1] +" "+ tictac[0][2]+"| ");
+        System.out.println("| " + tictac[1][0] +" " +tictac[1][1] +" "+ tictac[1][2]+"| ");
+        System.out.println("| "+ tictac[2][0] +" " +tictac[2][1] +" "+ tictac[2][2]+"| ");
+        System.out.println("---------");*/
+        /* "" + tictac[1][0] + tictac[1][1] + tictac[1][2];
+         + tictac[2][0] + tictac[2][1] + tictac[2][2];
+        String col1 = "" + tictac[0][0] + tictac[1][0] + tictac[2][0];
+        String col2 = "" + tictac[0][1] + tictac[1][1] + tictac[2][1];
+        String col3 = "" + tictac[0][2] + tictac[1][2] + tictac[2][2];
+        String diag1 = "" + tictac[0][0] + tictac[1][1] + tictac[2][2];
+        String diag2 = "" + tictac[2][0] + tictac[1][1] + tictac[0][2];*/
+
+    }
+    private static void result(String cells) {
+        char[][] tictac = makeMatrix(cells);
+
+        String row3 = "" + tictac[2][0] + tictac[2][1] + tictac[2][2];
+        String row2 = "" + tictac[1][0] + tictac[1][1] + tictac[1][2];
+        String row1 = "" + tictac[0][0] + tictac[0][1] + tictac[0][2];
+        String col1 = "" + tictac[0][0] + tictac[1][0] + tictac[2][0];
+        String col2 = "" + tictac[0][1] + tictac[1][1] + tictac[2][1];
+        String col3 = "" + tictac[0][2] + tictac[1][2] + tictac[2][2];
+        String diag1 = "" + tictac[0][0] + tictac[1][1] + tictac[2][2];
+        String diag2 = "" + tictac[2][0] + tictac[1][1] + tictac[0][2];
+
+
+        boolean isXWin = false;
+        boolean isOWin = false;
+        boolean isShift = false;
+        boolean isDraw = false;
+
+        int isX = 0;
+        int isO = 0;
+
+        for(int i = 0; i < cells.length(); i++) {
+            if (cells.charAt(i) == 'X') {
+                isX++;
+            } else if (cells.charAt(i) == 'O') {
+                isO++;
+            }
+        }
+
+        if ("XXX".equals(row1) || "XXX".equals(row2) ||
+                "XXX".equals(row3) || "XXX".equals(col1) ||
+                "XXX".equals(col2) || "XXX".equals(col3) ||
+                "XXX".equals(diag1) || "XXX".equals(diag2)) {
+            isXWin = true;
+        } if ("OOO".equals(row1) || "OOO".equals(row2) ||
+                "OOO".equals(row3) || "OOO".equals(col1) ||
+                "OOO".equals(col2) || "OOO".equals(col3) ||
+                "OOO".equals(diag1) || "OOO".equals(diag2)) {
+            isOWin = true;
+        }  if (cells.indexOf('_') >= 0) {
+            isShift = true;
+        } else {
+            isDraw = true;
+        }
+
+        if (isXWin && isOWin || Math.abs(isX - isO) > 1) {
+            System.out.println("Impossible");
+        } else if (isXWin) {
+            System.out.println("X wins");
+        } else if (isOWin) {
+            System.out.println("O wins");
+        } else if (isDraw) {
+            System.out.println("Draw");
+        } else if (isShift) {
+            System.out.println("Game not finished");
+        }
+
+
+    }
+}
